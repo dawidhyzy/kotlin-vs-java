@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Kotlin vs Java</string>
+    <string name="app_id">10ec3d3ef91b1d27bd01c86753ea3531</string>
+    <string name="base_url">http://api.openweathermap.org/data/2.5</string>
+</resources>
