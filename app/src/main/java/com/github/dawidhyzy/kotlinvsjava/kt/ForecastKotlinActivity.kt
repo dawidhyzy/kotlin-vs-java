@@ -7,6 +7,6 @@ import android.support.v7.app.AppCompatActivity
  * @since 30/01/16.
  */
 
-class ListKotlinActivity : AppCompatActivity() {
+class ForecastKotlinActivity : AppCompatActivity() {
 
 }

@@ -12,6 +12,6 @@ import rx.Observable;
  */
 public interface OpenWeatherMapApi {
 
-    @GET("/weather")
+    @GET("weather")
     Observable<Response> getWeatherByCityName(@Query("q") String city);
 }
