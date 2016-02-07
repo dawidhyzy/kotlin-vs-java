@@ -19,7 +19,6 @@ public class Forecast {
     private float pressure;
     private int humidity;
     private List<Weather> weathersList;
-    private String icon;
 
     public Forecast(String city, Response response) {
         this.city = city;
@@ -38,10 +37,6 @@ public class Forecast {
 
     public String getName() {
         return name;
-    }
-
-    public String getIcon() {
-        return weathersList.get(0).getIcon();
     }
 
     public double getTemperature() {

@@ -7,9 +7,7 @@ public class Main {
 
     @SerializedName("temp")
     private double temperature;
-    @SerializedName("pressure")
     private float pressure;
-    @SerializedName("humidity")
     private int humidity;
     @SerializedName("temp_min")
     private double temperatureMin;

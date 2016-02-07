@@ -1,6 +1,5 @@
 package com.github.dawidhyzy.kotlinvsjava.jv.forecast;
 
-import com.github.dawidhyzy.kotlinvsjava.App;
 import com.github.dawidhyzy.kotlinvsjava.jv.api.OpenWeatherMapApi;
 import com.github.dawidhyzy.kotlinvsjava.jv.api.model.Response;
 import com.github.dawidhyzy.kotlinvsjava.jv.domain.Forecast;
@@ -22,16 +21,16 @@ public class ForecastPresenter implements ForecastContract.Presenter {
     private OpenWeatherMapApi api;
     private String city = "Kraków";
 
-    public ForecastPresenter(ForecastContract.View view) {
+    public ForecastPresenter(ForecastContract.View view, OpenWeatherMapApi api) {
         this.view = view;
-        api = App.getApi();
+        this.api = api;
 
     }
 
     @Override public void loadForecast() {
         api.getWeatherByCityName(city)
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Action0() {
                     @Override public void call() {
                         view.showLoading(true);
@@ -53,16 +52,11 @@ public class ForecastPresenter implements ForecastContract.Presenter {
                     }
                 })
                 .subscribe(new SimpleObserver<Forecast>(){
-                    @Override public void onCompleted() {
-                        view.showLoading(false);
-                    }
-
                     @Override public void onNext(Forecast forecast) {
                         view.setForecast(forecast);
                     }
 
                     @Override public void onError(Throwable e) {
-                        super.onError(e);
                         e.printStackTrace();
                         view.showError(e.getMessage());
                     }

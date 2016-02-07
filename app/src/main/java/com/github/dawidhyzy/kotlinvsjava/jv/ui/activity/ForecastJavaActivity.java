@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.dawidhyzy.kotlinvsjava.App;
 import com.github.dawidhyzy.kotlinvsjava.R;
 import com.github.dawidhyzy.kotlinvsjava.jv.domain.Forecast;
 import com.github.dawidhyzy.kotlinvsjava.jv.forecast.ForecastContract;
@@ -40,7 +41,7 @@ public class ForecastJavaActivity extends AppCompatActivity implements ForecastC
     }
 
     private void initView(){
-        presenter = new ForecastPresenter(this);
+        presenter = new ForecastPresenter(this, App.getApi());
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
