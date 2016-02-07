@@ -2,16 +2,18 @@ package com.github.dawidhyzy.kotlinvsjava.kt.forecast
 
 import com.github.dawidhyzy.kotlinvsjava.kt.api.OpenWeatherMapApi
 import com.github.dawidhyzy.kotlinvsjava.kt.domain.Forecast
+import com.github.dawidhyzy.kotlinvsjava.kt.extensions.safe
 import rx.android.schedulers.AndroidSchedulers
 import rx.lang.kotlin.onError
 import rx.schedulers.Schedulers
 import timber.log.Timber
+import java.lang.ref.WeakReference
 
 /**
  * @author Dawid Hyży <dawid.hyzy@seedlabs.io>
  * @since 06/02/16.
  */
-class ForecastPresenter(val view: View, val api: OpenWeatherMapApi) : Presenter {
+class ForecastPresenter(val view: WeakReference<View>, val api: OpenWeatherMapApi) : Presenter {
 
     val city: String = "Kraków"
 
@@ -20,18 +22,25 @@ class ForecastPresenter(val view: View, val api: OpenWeatherMapApi) : Presenter 
         api.getWeatherByCityName(city)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { view.showLoading(true) }
-                .doOnCompleted { view.showLoading(false) }
+                .doOnSubscribe { view.safe { showLoading(true) } }
+                .doOnCompleted { view.safe { showLoading(false) } }
                 .onError { e ->
-                    view.showLoading(false)
+                    view.safe {
+                        showLoading(false)
+                    }
                 }
                 .map { Forecast(city, it) }
                 .subscribe(
                     {forecast : Forecast ->
                         Timber.d("Forecast loaded: $forecast")
-                        view.setForecast(forecast)
+                        view.safe { setForecast(forecast) }
                     },
-                    {throwable : Throwable -> throwable.printStackTrace()}
+                    {throwable : Throwable ->
+                        throwable.printStackTrace()
+                        view.safe {
+                            throwable.message?.let { showError(throwable.message as String) }
+                        }
+                    }
 
                 )
 
