@@ -1,5 +1,6 @@
 package com.github.dawidhyzy.kotlinvsjava.jv.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.dawidhyzy.kotlinvsjava.App;
 import com.github.dawidhyzy.kotlinvsjava.R;
 import com.github.dawidhyzy.kotlinvsjava.jv.domain.Forecast;
 import com.github.dawidhyzy.kotlinvsjava.jv.forecast.ForecastContract;
@@ -40,7 +42,7 @@ public class ForecastJavaActivity extends AppCompatActivity implements ForecastC
     }
 
     private void initView(){
-        presenter = new ForecastPresenter(this);
+        presenter = new ForecastPresenter(this, App.getApi());
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -75,7 +77,7 @@ public class ForecastJavaActivity extends AppCompatActivity implements ForecastC
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
+    @SuppressLint("StringFormatMatches") @Override
     public void setForecast(Forecast forecast) {
         cityName.setText(String.format("%s, %s", forecast.getCity(), forecast.getName()));
         temperature.setText(String.format(Locale.getDefault(),

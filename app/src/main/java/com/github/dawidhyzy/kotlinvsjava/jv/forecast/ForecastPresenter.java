@@ -1,10 +1,11 @@
 package com.github.dawidhyzy.kotlinvsjava.jv.forecast;
 
-import com.github.dawidhyzy.kotlinvsjava.App;
 import com.github.dawidhyzy.kotlinvsjava.jv.api.OpenWeatherMapApi;
 import com.github.dawidhyzy.kotlinvsjava.jv.api.model.Response;
 import com.github.dawidhyzy.kotlinvsjava.jv.domain.Forecast;
 import com.github.dawidhyzy.kotlinvsjava.jv.util.SimpleObserver;
+
+import java.lang.ref.WeakReference;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
@@ -18,13 +19,13 @@ import rx.schedulers.Schedulers;
  */
 public class ForecastPresenter implements ForecastContract.Presenter {
 
-    private ForecastContract.View view;
+    private WeakReference<ForecastContract.View> view;
     private OpenWeatherMapApi api;
     private String city = "Kraków";
 
-    public ForecastPresenter(ForecastContract.View view) {
-        this.view = view;
-        api = App.getApi();
+    public ForecastPresenter(ForecastContract.View view, OpenWeatherMapApi api) {
+        this.view = new WeakReference<>(view);
+        this.api = api;
 
     }
 
@@ -33,38 +34,51 @@ public class ForecastPresenter implements ForecastContract.Presenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe(new Action0() {
-                    @Override public void call() {
-                        view.showLoading(true);
+                    @Override
+                    public void call() {
+                        if(view.get() != null) {
+                            view.get().showLoading(true);
+                        }
                     }
                 })
                 .doOnCompleted(new Action0() {
-                    @Override public void call() {
-                        view.showLoading(false);
+                    @Override
+                    public void call() {
+                        if(view.get() != null) {
+                            view.get().showLoading(false);
+                        }
                     }
                 })
                 .doOnError(new Action1<Throwable>() {
-                    @Override public void call(Throwable throwable) {
-                        view.showLoading(false);
+                    @Override
+                    public void call(Throwable throwable) {
+                        if(view.get() != null) {
+                            view.get().showLoading(false);
+                        }
                     }
                 })
                 .map(new Func1<Response, Forecast>() {
-                    @Override public Forecast call(Response response) {
+                    @Override
+                    public Forecast call(Response response) {
                         return new Forecast(city, response);
                     }
                 })
                 .subscribe(new SimpleObserver<Forecast>(){
-                    @Override public void onCompleted() {
-                        view.showLoading(false);
+
+                    @Override
+                    public void onNext(Forecast forecast) {
+                        if(view.get() != null) {
+                            view.get().setForecast(forecast);
+                        }
                     }
 
-                    @Override public void onNext(Forecast forecast) {
-                        view.setForecast(forecast);
-                    }
-
-                    @Override public void onError(Throwable e) {
+                    @Override
+                    public void onError(Throwable e) {
                         super.onError(e);
                         e.printStackTrace();
-                        view.showError(e.getMessage());
+                        if(view.get() != null) {
+                            view.get().showError(e.getMessage());
+                        }
                     }
                 });
     }
