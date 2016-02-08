@@ -3,6 +3,7 @@ package com.github.dawidhyzy.kotlinvsjava.jv.ui.activity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.dawidhyzy.kotlinvsjava.App;
 import com.github.dawidhyzy.kotlinvsjava.R;
@@ -31,7 +31,7 @@ public class ForecastJavaActivity extends AppCompatActivity implements ForecastC
     private Toolbar toolbar;
     private WeatherAdapter weatherAdapter;
 
-    private ForecastContract.Presenter presenter;
+    private ForecastContract.Presenter presenter = new ForecastPresenter(this, App.getApi());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,6 @@ public class ForecastJavaActivity extends AppCompatActivity implements ForecastC
     }
 
     private void initView(){
-        presenter = new ForecastPresenter(this, App.getApi());
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -74,7 +73,7 @@ public class ForecastJavaActivity extends AppCompatActivity implements ForecastC
 
     @Override
     public void showError(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show();
     }
 
     @SuppressLint("StringFormatMatches") @Override

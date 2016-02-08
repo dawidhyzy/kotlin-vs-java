@@ -10,29 +10,17 @@ public class Response {
 
     @SerializedName("coord")
     private Coordinates coordinates;
-    @SerializedName("weather")
     private List<Weather> weather = new ArrayList<>();
-    @SerializedName("base")
     private String base;
-    @SerializedName("main")
     private Main main;
-    @SerializedName("wind")
     private Wind wind;
-    @SerializedName("clouds")
     private Clouds clouds;
-    @SerializedName("rain")
     private Rain rain;
-    @SerializedName("snow")
     private Snow snow;
-    @SerializedName("dt")
     private int dt;
-    @SerializedName("sys")
     private Sys sys;
-    @SerializedName("id")
     private int id;
-    @SerializedName("name")
     private String name;
-    @SerializedName("cod")
     private int cod;
 
     public Coordinates getCoordinates() {
