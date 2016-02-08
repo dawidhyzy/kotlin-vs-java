@@ -24,12 +24,9 @@ import java.util.Locale;
 
 public class ForecastJavaActivity extends AppCompatActivity implements ForecastContract.View {
 
-    private FloatingActionButton refresh;
-    private RecyclerView weatherList;
     private SwipeRefreshLayout progress;
     private TextView cityName, temperature, pressure, humidity, wind;
-    private Toolbar toolbar;
-    private WeatherAdapter weatherAdapter;
+    private WeatherAdapter weatherAdapter = new WeatherAdapter();
 
     private ForecastContract.Presenter presenter = new ForecastPresenter(this, App.getApi());
 
@@ -42,10 +39,10 @@ public class ForecastJavaActivity extends AppCompatActivity implements ForecastC
     }
 
     private void initView(){
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        refresh = (FloatingActionButton) findViewById(R.id.refresh);
+        FloatingActionButton refresh = (FloatingActionButton) findViewById(R.id.refresh);
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 presenter.refresh();
@@ -58,9 +55,8 @@ public class ForecastJavaActivity extends AppCompatActivity implements ForecastC
         wind = (TextView) findViewById(R.id.wind);
         progress = (SwipeRefreshLayout) findViewById(R.id.progress);
         progress.setEnabled(false);
-        weatherList = (RecyclerView) findViewById(R.id.weather_list);
+        RecyclerView weatherList = (RecyclerView) findViewById(R.id.weather_list);
         weatherList.setLayoutManager(new LinearLayoutManager(this));
-        weatherAdapter = new WeatherAdapter();
         weatherList.setAdapter(weatherAdapter);
 
         presenter.loadForecast();
