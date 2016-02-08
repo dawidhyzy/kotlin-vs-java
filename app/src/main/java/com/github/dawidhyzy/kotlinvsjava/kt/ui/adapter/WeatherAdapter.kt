@@ -7,9 +7,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.github.dawidhyzy.kotlinvsjava.R
 import com.github.dawidhyzy.kotlinvsjava.jv.api.model.Weather
+import com.github.dawidhyzy.kotlinvsjava.kt.extensions.d
 import com.github.dawidhyzy.kotlinvsjava.kt.extensions.inflate
 import com.github.dawidhyzy.kotlinvsjava.kt.extensions.loadUrl
-import timber.log.Timber
 import java.util.*
 
 /**
@@ -35,9 +35,10 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.ViewHolder>() {
 
     fun setWeatherList(weatherList: List<Weather>) {
         this.weatherList.clear()
-        val added = this.weatherList.addAll(weatherList)
-        Timber.d("Objects added to list: $added; list size: ${this.weatherList.size}")
-        notifyDataSetChanged()
+        this.weatherList.addAll(weatherList).let{
+            d {"Objects added to list:$it; list size: ${this.weatherList.size}"}
+            notifyDataSetChanged()
+        }
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

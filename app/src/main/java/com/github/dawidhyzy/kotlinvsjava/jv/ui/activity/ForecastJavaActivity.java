@@ -1,5 +1,6 @@
 package com.github.dawidhyzy.kotlinvsjava.jv.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -30,7 +31,7 @@ public class ForecastJavaActivity extends AppCompatActivity implements ForecastC
     private Toolbar toolbar;
     private WeatherAdapter weatherAdapter;
 
-    private ForecastContract.Presenter presenter;
+    private ForecastContract.Presenter presenter = new ForecastPresenter(this, App.getApi());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,6 @@ public class ForecastJavaActivity extends AppCompatActivity implements ForecastC
     }
 
     private void initView(){
-        presenter = new ForecastPresenter(this, App.getApi());
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -52,10 +52,10 @@ public class ForecastJavaActivity extends AppCompatActivity implements ForecastC
             }
         });
         cityName = (TextView) findViewById(R.id.city_name);
-        temperature = (TextView) findViewById(R.id.temperature);
-        pressure = (TextView) findViewById(R.id.pressure);
-        humidity = (TextView) findViewById(R.id.humidity);
-        wind = (TextView) findViewById(R.id.wind);
+        temperature = (TextView) findViewById(R.id.temperature_txt);
+        pressure = (TextView) findViewById(R.id.pressure_txt);
+        humidity = (TextView) findViewById(R.id.humidity_txt);
+        wind = (TextView) findViewById(R.id.wind_txt);
         progress = (SwipeRefreshLayout) findViewById(R.id.progress);
         progress.setEnabled(false);
         weatherList = (RecyclerView) findViewById(R.id.weather_list);
@@ -76,6 +76,7 @@ public class ForecastJavaActivity extends AppCompatActivity implements ForecastC
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+    @SuppressLint("StringFormatMatches")
     @Override
     public void setForecast(Forecast forecast) {
         cityName.setText(String.format("%s, %s", forecast.getCity(), forecast.getName()));

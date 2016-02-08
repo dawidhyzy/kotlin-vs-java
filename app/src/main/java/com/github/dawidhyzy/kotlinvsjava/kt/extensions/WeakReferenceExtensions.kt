@@ -7,6 +7,6 @@ import java.lang.ref.WeakReference
  * @since 07/02/16.
  */
 
-fun <T> WeakReference<T>.safe(body : T.() -> Unit) {
+inline fun <T> WeakReference<T>.safe(body : T.() -> Unit) {
     this.get()?.body()
 }
