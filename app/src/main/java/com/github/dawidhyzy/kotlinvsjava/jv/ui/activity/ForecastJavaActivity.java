@@ -38,7 +38,7 @@ public class ForecastJavaActivity extends AppCompatActivity implements ForecastC
         initView();
     }
 
-    private void initView(){
+    private void initView() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -72,7 +72,8 @@ public class ForecastJavaActivity extends AppCompatActivity implements ForecastC
         Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show();
     }
 
-    @SuppressLint("StringFormatMatches") @Override
+    @SuppressLint("StringFormatMatches")
+    @Override
     public void setForecast(Forecast forecast) {
         cityName.setText(String.format("%s, %s", forecast.getCity(), forecast.getName()));
         temperature.setText(String.format(Locale.getDefault(),

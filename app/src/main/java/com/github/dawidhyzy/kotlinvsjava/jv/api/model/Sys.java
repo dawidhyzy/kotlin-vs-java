@@ -1,4 +1,3 @@
-
 package com.github.dawidhyzy.kotlinvsjava.jv.api.model;
 
 public class Sys {

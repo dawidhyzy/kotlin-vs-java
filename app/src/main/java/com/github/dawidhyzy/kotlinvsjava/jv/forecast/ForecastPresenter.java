@@ -36,7 +36,7 @@ public class ForecastPresenter implements ForecastContract.Presenter {
                 .doOnSubscribe(new Action0() {
                     @Override
                     public void call() {
-                        if(view.get() != null) {
+                        if (view.get() != null) {
                             view.get().showLoading(true);
                         }
                     }
@@ -44,7 +44,7 @@ public class ForecastPresenter implements ForecastContract.Presenter {
                 .doOnCompleted(new Action0() {
                     @Override
                     public void call() {
-                        if(view.get() != null) {
+                        if (view.get() != null) {
                             view.get().showLoading(false);
                         }
                     }
@@ -52,7 +52,7 @@ public class ForecastPresenter implements ForecastContract.Presenter {
                 .doOnError(new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        if(view.get() != null) {
+                        if (view.get() != null) {
                             view.get().showLoading(false);
                         }
                     }
@@ -63,11 +63,11 @@ public class ForecastPresenter implements ForecastContract.Presenter {
                         return new Forecast(city, response);
                     }
                 })
-                .subscribe(new SimpleObserver<Forecast>(){
+                .subscribe(new SimpleObserver<Forecast>() {
 
                     @Override
                     public void onNext(Forecast forecast) {
-                        if(view.get() != null) {
+                        if (view.get() != null) {
                             view.get().setForecast(forecast);
                         }
                     }
@@ -76,7 +76,7 @@ public class ForecastPresenter implements ForecastContract.Presenter {
                     public void onError(Throwable e) {
                         super.onError(e);
                         e.printStackTrace();
-                        if(view.get() != null) {
+                        if (view.get() != null) {
                             view.get().showError(e.getMessage());
                         }
                     }

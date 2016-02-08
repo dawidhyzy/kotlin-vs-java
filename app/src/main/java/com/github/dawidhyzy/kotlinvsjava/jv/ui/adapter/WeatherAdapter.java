@@ -21,7 +21,7 @@ import timber.log.Timber;
  * @author Dawid Hyży <dawid.hyzy@seedlabs.io>
  * @since 31/01/16.
  */
-public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHolder>{
+public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHolder> {
     private List<Weather> weatherList = new ArrayList<>(0);
 
     @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -51,9 +51,10 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
         notifyDataSetChanged();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
         ImageView icon;
         TextView description;
+
         public ViewHolder(View itemView) {
             super(itemView);
             icon = (ImageView) itemView.findViewById(R.id.icon);

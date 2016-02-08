@@ -8,14 +8,17 @@ import com.github.dawidhyzy.kotlinvsjava.jv.domain.Forecast;
  */
 public class ForecastContract {
 
-    public interface View{
+    public interface View {
         void showLoading(boolean show);
+
         void showError(String message);
+
         void setForecast(Forecast forecast);
     }
 
-    public interface Presenter{
+    public interface Presenter {
         void loadForecast();
+
         void refresh();
     }
 }

@@ -8,7 +8,7 @@ public class UnitsUtils {
 
     private static final double KELVIN_ZERO = 273.15f;
 
-    public static double kelvinToCelsius(double kelvin){
+    public static double kelvinToCelsius(double kelvin) {
         return kelvin - KELVIN_ZERO;
     }
 }

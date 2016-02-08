@@ -25,16 +25,7 @@ public class App extends Application {
 
     private static Context context;
 
-    @Override public void onCreate() {
-        super.onCreate();
-        context = getApplicationContext();
-
-        if (BuildConfig.DEBUG) {
-            Timber.plant(new Timber.DebugTree());
-        }
-    }
-
-    public static OpenWeatherMapApi getApi(){
+    public static OpenWeatherMapApi getApi() {
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addInterceptor(new Interceptor() {
@@ -60,5 +51,14 @@ public class App extends Application {
                 .build();
 
         return retrofit.create(OpenWeatherMapApi.class);
+    }
+
+    @Override public void onCreate() {
+        super.onCreate();
+        context = getApplicationContext();
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+        }
     }
 }
