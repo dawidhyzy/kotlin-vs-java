@@ -20,8 +20,6 @@ import com.github.dawidhyzy.kotlinvsjava.jv.forecast.ForecastPresenter;
 import com.github.dawidhyzy.kotlinvsjava.jv.ui.adapter.WeatherAdapter;
 import com.github.dawidhyzy.kotlinvsjava.jv.util.UnitsUtils;
 
-import java.util.Locale;
-
 public class ForecastJavaActivity extends AppCompatActivity implements ForecastContract.View {
 
     private SwipeRefreshLayout progress;
@@ -76,18 +74,11 @@ public class ForecastJavaActivity extends AppCompatActivity implements ForecastC
     @Override
     public void setForecast(Forecast forecast) {
         cityName.setText(String.format("%s, %s", forecast.getCity(), forecast.getName()));
-        temperature.setText(String.format(Locale.getDefault(),
-                getString(R.string.temperature),
+        temperature.setText(getString(R.string.temperature,
                 UnitsUtils.kelvinToCelsius(forecast.getTemperature())));
-        pressure.setText(String.format(Locale.getDefault(),
-                getString(R.string.pressure),
-                forecast.getPressure()));
-        humidity.setText(String.format(Locale.getDefault(),
-                getString(R.string.humidity),
-                forecast.getHumidity()));
-        wind.setText(String.format(Locale.getDefault(), getString(R.string.wind),
-                forecast.getWindSpeed(),
-                forecast.getWindDirection()));
+        pressure.setText(getString(R.string.pressure, forecast.getPressure()));
+        humidity.setText(getString(R.string.humidity, forecast.getHumidity()));
+        wind.setText(getString(R.string.wind, forecast.getWindSpeed(), forecast.getWindDirection()));
         weatherAdapter.setWeatherList(forecast.getWeathersList());
     }
 }
