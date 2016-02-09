@@ -16,7 +16,6 @@ import com.github.dawidhyzy.kotlinvsjava.kt.ui.adapter.WeatherAdapter
 import kotlinx.android.synthetic.main.activity_forecast.*
 import kotlinx.android.synthetic.main.content_main.*
 import org.jetbrains.anko.onClick
-import java.util.*
 
 /**
  * @author Dawid Hyży <dawid.hyzy@seedlabs.io>
@@ -59,18 +58,10 @@ class ForecastKotlinActivity : AppCompatActivity(), View{
         d {"Get forecast"}
         forecast.apply {
             city_name.text = "$city, $name"
-            temperature_txt.text = String.format(Locale.getDefault(),
-                    getString(R.string.temperature),
-                    temperature.toCelcius())
-            pressure_txt.text = String.format(Locale.getDefault(),
-                    getString(R.string.pressure),
-                    pressure)
-            humidity_txt.text = String.format(Locale.getDefault(),
-                    getString(R.string.humidity),
-                    humidity)
-            wind_txt.text = String.format(Locale.getDefault(), getString(R.string.wind),
-                    windSpeed,
-                    windDirection)
+            temperature_txt.text = getString(R.string.temperature, temperature.toCelcius())
+            pressure_txt.text = getString(R.string.pressure, pressure)
+            humidity_txt.text = getString(R.string.humidity, humidity)
+            wind_txt.text = getString(R.string.wind, windSpeed, windDirection)
             (weather_list.adapter as WeatherAdapter).setWeatherList(weathersList)
         }
     }
