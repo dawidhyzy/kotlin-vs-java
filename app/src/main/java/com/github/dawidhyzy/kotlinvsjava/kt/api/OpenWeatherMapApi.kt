@@ -34,7 +34,7 @@ interface OpenWeatherMapApi {
                 val request = chain.request().newBuilder().url(url).build()
 
                 val originalResponse = chain.proceed(request)
-                d { "Url: ${url.url().toString()}" }
+                d { "Url: ${url.url()}" }
                 originalResponse.newBuilder().build()
             }
 
