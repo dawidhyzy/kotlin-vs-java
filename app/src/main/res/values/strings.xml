@@ -6,6 +6,6 @@
     <string name="weather_icon">Weather icon</string>
     <string name="temperature">Temperature: %1$,.0f \u00B0C</string>
     <string name="pressure">Pressure: %1$,.0f hPa</string>
-    <string name="humidity">Humidity: %d %%</string>
+    <string name="humidity">Humidity: %1$,.0f %%</string>
     <string name="wind">Wind:\nSpeed: %1$,.2f m/s\nDirection: %1$,.2f \u00B0</string>
 </resources>
