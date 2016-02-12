@@ -2,7 +2,6 @@ package com.github.dawidhyzy.kotlinvsjava.kt.api
 
 import android.content.Context
 import com.github.dawidhyzy.kotlinvsjava.R
-import com.github.dawidhyzy.kotlinvsjava.jv.api.model.Response
 import com.github.dawidhyzy.kotlinvsjava.kt.extensions.d
 import okhttp3.OkHttpClient
 import retrofit2.GsonConverterFactory

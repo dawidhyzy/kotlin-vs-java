@@ -19,7 +19,7 @@ data class Sys(val type: Int, val id: Int, val message: Double, val country: Str
                val sunrise: Int, val sunset: Int)
 data class Weather(val id: Int, val main: String, val description: String, val icon: String)
 data class Wind(val speed: Double, @SerializedName("deg") val direction: Float)
-data class Response(@SerializedName("coord") val coordinates: Coordinates, val weather: Weather,
+data class Response(@SerializedName("coord") val coordinates: Coordinates, val weather: List<Weather>,
                     val base: String, val main: Main, val wind: Wind, val clouds: Clouds,
                     val rain: Rain, val snow: Snow, val dt: Int, val sys: Sys, val id: Int,
                     val name: String, val cod: Int)

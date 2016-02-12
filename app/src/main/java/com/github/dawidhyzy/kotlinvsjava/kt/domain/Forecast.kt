@@ -1,7 +1,7 @@
 package com.github.dawidhyzy.kotlinvsjava.kt.domain
 
-import com.github.dawidhyzy.kotlinvsjava.jv.api.model.Response
-import com.github.dawidhyzy.kotlinvsjava.jv.api.model.Weather
+import com.github.dawidhyzy.kotlinvsjava.kt.api.Response
+import com.github.dawidhyzy.kotlinvsjava.kt.api.Weather
 
 /**
  * @author Dawid Hyży <dawid.hyzy@seedlabs.io>
@@ -13,8 +13,8 @@ class Forecast(val city: String, response: Response) {
     val windDirection: Float
     val name: String
     val temperature: Double
-    val pressure: Float
-    val humidity: Int
+    val pressure: Double
+    val humidity: Double
     val weathersList: List<Weather>
 
     init {

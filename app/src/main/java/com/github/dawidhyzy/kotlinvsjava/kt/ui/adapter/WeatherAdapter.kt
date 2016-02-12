@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.github.dawidhyzy.kotlinvsjava.R
-import com.github.dawidhyzy.kotlinvsjava.jv.api.model.Weather
+import com.github.dawidhyzy.kotlinvsjava.kt.api.Weather
 import com.github.dawidhyzy.kotlinvsjava.kt.extensions.d
 import com.github.dawidhyzy.kotlinvsjava.kt.extensions.inflate
 import com.github.dawidhyzy.kotlinvsjava.kt.extensions.loadUrl
