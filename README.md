@@ -1,3 +1,3 @@
 # kotlin-vs-java
 
-Sample project writen in Java and Kotlin 
+Sample project written in Java and Kotlin 
