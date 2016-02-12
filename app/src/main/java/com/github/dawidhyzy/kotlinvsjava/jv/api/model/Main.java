@@ -1,4 +1,3 @@
-
 package com.github.dawidhyzy.kotlinvsjava.jv.api.model;
 
 import com.google.gson.annotations.SerializedName;
@@ -7,10 +6,8 @@ public class Main {
 
     @SerializedName("temp")
     private double temperature;
-    @SerializedName("pressure")
-    private int pressure;
-    @SerializedName("humidity")
-    private int humidity;
+    private float pressure;
+    private double humidity;
     @SerializedName("temp_min")
     private double temperatureMin;
     @SerializedName("temp_max")
@@ -24,19 +21,19 @@ public class Main {
         this.temperature = temperature;
     }
 
-    public int getPressure() {
+    public float getPressure() {
         return pressure;
     }
 
-    public void setPressure(int pressure) {
+    public void setPressure(float pressure) {
         this.pressure = pressure;
     }
 
-    public int getHumidity() {
+    public double getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(int humidity) {
+    public void setHumidity(double humidity) {
         this.humidity = humidity;
     }
 

@@ -1,4 +1,3 @@
-
 package com.github.dawidhyzy.kotlinvsjava.jv.api.model;
 
 import com.google.gson.annotations.Expose;

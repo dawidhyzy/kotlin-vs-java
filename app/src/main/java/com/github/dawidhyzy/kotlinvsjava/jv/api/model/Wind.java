@@ -1,14 +1,12 @@
-
 package com.github.dawidhyzy.kotlinvsjava.jv.api.model;
 
 import com.google.gson.annotations.SerializedName;
 
 public class Wind {
 
-    @SerializedName("speed")
     private double speed;
     @SerializedName("deg")
-    private int direction;
+    private float direction;
 
     public double getSpeed() {
         return speed;
@@ -18,11 +16,11 @@ public class Wind {
         this.speed = speed;
     }
 
-    public int getDirection() {
+    public float getDirection() {
         return direction;
     }
 
-    public void setDirection(int direction) {
+    public void setDirection(float direction) {
         this.direction = direction;
     }
 

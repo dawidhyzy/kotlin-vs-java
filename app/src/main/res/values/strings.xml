@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">Kotlin vs Java</string>
     <string name="app_id">10ec3d3ef91b1d27bd01c86753ea3531</string>
-    <string name="base_url">http://api.openweathermap.org/data/2.5</string>
+    <string name="base_url">http://api.openweathermap.org/data/2.5/</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="weather_icon">Weather icon</string>
+    <string name="temperature">Temperature: %1$,.0f \u00B0C</string>
+    <string name="pressure">Pressure: %1$,.0f hPa</string>
+    <string name="humidity">Humidity: %1$,.0f %%</string>
+    <string name="wind">Wind:\nSpeed: %1$,.2f m/s\nDirection: %1$,.2f \u00B0</string>
 </resources>

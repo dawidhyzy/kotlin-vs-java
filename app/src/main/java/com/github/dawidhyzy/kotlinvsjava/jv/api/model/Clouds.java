@@ -1,11 +1,7 @@
-
 package com.github.dawidhyzy.kotlinvsjava.jv.api.model;
-
-import com.google.gson.annotations.SerializedName;
 
 public class Clouds {
 
-    @SerializedName("all")
     private int all;
 
     public int getAll() {
