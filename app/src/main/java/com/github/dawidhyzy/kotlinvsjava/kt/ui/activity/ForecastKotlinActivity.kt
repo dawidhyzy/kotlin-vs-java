@@ -6,10 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.github.dawidhyzy.kotlinvsjava.KotlinApp
 import com.github.dawidhyzy.kotlinvsjava.R
 import com.github.dawidhyzy.kotlinvsjava.kt.domain.Forecast
-import com.github.dawidhyzy.kotlinvsjava.kt.extensions.contentView
-import com.github.dawidhyzy.kotlinvsjava.kt.extensions.d
-import com.github.dawidhyzy.kotlinvsjava.kt.extensions.snack
-import com.github.dawidhyzy.kotlinvsjava.kt.extensions.toCelcius
+import com.github.dawidhyzy.kotlinvsjava.kt.extensions.*
 import com.github.dawidhyzy.kotlinvsjava.kt.forecast.ForecastPresenter
 import com.github.dawidhyzy.kotlinvsjava.kt.forecast.View
 import com.github.dawidhyzy.kotlinvsjava.kt.ui.adapter.WeatherAdapter
@@ -33,6 +30,7 @@ class ForecastKotlinActivity : AppCompatActivity(), View{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forecast)
         initView()
+
     }
 
     private fun initView(){
@@ -64,5 +62,6 @@ class ForecastKotlinActivity : AppCompatActivity(), View{
             wind_txt.text = getString(R.string.wind, windSpeed, windDirection)
             (weather_list.adapter as WeatherAdapter).setWeatherList(weathersList)
         }
+
     }
 }
