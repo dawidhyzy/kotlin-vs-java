@@ -4,9 +4,9 @@ import android.content.Context
 import com.github.dawidhyzy.kotlinvsjava.R
 import com.github.dawidhyzy.kotlinvsjava.kt.extensions.d
 import okhttp3.OkHttpClient
-import retrofit2.GsonConverterFactory
 import retrofit2.Retrofit
-import retrofit2.RxJavaCallAdapterFactory
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 import rx.Observable
