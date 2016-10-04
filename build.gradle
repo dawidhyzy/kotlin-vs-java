@@ -1,6 +1,6 @@
 buildscript {
-    ext.android_plugin_version = '2.2.0-alpha6'
-    ext.kotlin_version = '1.0.3'
+    ext.android_plugin_version = '2.2.0'
+    ext.kotlin_version = '1.0.4'
     ext.anko_version = '0.8.3'
 
     repositories {
